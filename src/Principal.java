@@ -11,7 +11,8 @@ public class Principal {
         miVentana.setVisible(true);*/
 
         // SUYO
-        pantallaInicio();
+        //pantallaInicio();
+        Ventana miVentana= new Ventana();
     }
         private static void pantallaInicio () {
             JFrame frame = new JFrame("Prueba pantalla inicio");
