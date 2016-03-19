@@ -6,10 +6,6 @@ import java.awt.event.ActionListener;
 public class Principal {
 
     public static void main (String[] args ) {
-        // MIO
-        /*Ventana miVentana = new Ventana("Gestion de TFG'S");
-        miVentana.setVisible(true);*/
-
         // SUYO
         //pantallaInicio();
         Ventana miVentana= new Ventana();

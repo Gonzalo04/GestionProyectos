@@ -21,12 +21,14 @@ public class Ventana {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setResizable(false);
         ventana.setLocationRelativeTo(null);
-        ventana.setLayout(null);
         añadirContenedor(ventana);
         ventana.setVisible(true);
     }
 
     private void añadirContenedor(final JFrame ventana){
+        final JPanel panel= new JPanel();
+        panel.setLayout(null);
+        ventana.add(panel);
         JLabel Titulo = new JLabel("Gestion de TFG'S");
         Titulo.setBounds(200,10,500,30);
         Titulo.setFont(new java.awt.Font("Tahoma", 0, 36));
@@ -44,56 +46,49 @@ public class Ventana {
         JButton BotonBuscar = new JButton("Buscar");
         BotonBuscar.setBounds(480,410,190,30);
 
-        ventana.add(Titulo);
-        ventana.add(BotonCrear);
-        ventana.add(BotonModifi);
-        ventana.add(BotonBorrar);
-        ventana.add(Buscar);
-        ventana.add(TextBuscar);
-        ventana.add(BotonBuscar);
+        panel.add(Titulo);
+        panel.add(BotonCrear);
+        panel.add(BotonModifi);
+        panel.add(BotonBorrar);
+        panel.add(Buscar);
+        panel.add(TextBuscar);
+        panel.add(BotonBuscar);
 
         BotonCrear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ventana.setVisible(false);
-                crearVentanaNuevoProyecto();
+                panel.setVisible(false);
+                panel.removeAll();
+                crearVentanaNuevoProyecto(panel);
 
             }
         });
         BotonModifi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ventana.setVisible(false);
-                crearVentanaModificarTFG();
+                panel.setVisible(false);
+                panel.removeAll();
+                //crearVentanaModificarTFG();
             }
         });
     }
-    public void crearVentanaNuevoProyecto() {
-        final JFrame ventanaNuevo = new JFrame("Gestion de TFG'S - Crear nuevo Proyecto");
-        ventanaNuevo.setSize(700,700);
-        ventanaNuevo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaNuevo.setResizable(false);
-        ventanaNuevo.setLocationRelativeTo(null);
-        ventanaNuevo.setVisible(true);
-        ventanaNuevo.setLayout(null);
-        añadirComponentesNuevoProyecto(ventanaNuevo,ventana);
+    private void crearVentanaNuevoProyecto(final JPanel panel){
+        ventana.setTitle("Gestion de TFG'S - Nuevo Proyecto");
+        JPanel panelNuevo = new JPanel();
+        panelNuevo.setLayout(null);
+        añadirComponentesPanelNuevo(panelNuevo,panel);
+        ventana.add(panelNuevo);
     }
-    public void añadirComponentesNuevoProyecto(final JFrame ventanaNuevo,final JFrame ventana){
-        JButton Volver = new JButton("Volver");
-        Volver.setBounds(525,615,150,30);
+    private void añadirComponentesPanelNuevo(final JPanel panelNuevo, final JPanel panel){
+        JButton volver = new JButton("Volver");
+        volver.setBounds(485,625,200,30);
+        panelNuevo.add(volver);
+        volver.requestFocus();
 
-        ventanaNuevo.add(Volver);
-        Volver.addActionListener(new ActionListener(){
+        volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ventanaNuevo.setVisible(false);
-                ventana.setVisible(true);
+                panelNuevo.setVisible(false);
+                panelNuevo.removeAll();
+                añadirContenedor(ventana);
             }
         });
-    }
-    public void crearVentanaModificarTFG() {
-        final JFrame ventanaNuevo = new JFrame("Gestion de TFG'S - Modificar TFG");
-        ventanaNuevo.setSize(700,700);
-        ventanaNuevo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaNuevo.setResizable(false);
-        ventanaNuevo.setLocationRelativeTo(null);
-        ventanaNuevo.setVisible(true);
     }
 }
